@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package DAO;
-import Entities.Airline;
+import ENTITIES.Airline;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +13,9 @@ import java.sql.ResultSet;
  *
  * @author felipebrizola
  */
-public class AirlinesDao {
+public class AirlineDao {
     
-        public Airline getAirlineById(String id) throws Exception {
+        public Airline getAirlineById(String id) throws DaoException {
         Airline airline = null;
         String sql = "SELECT * FROM AIRLINES WHERE AIRLINE_ID = ?";
         try (Connection connection = dbFactory.getConnection()) {
@@ -31,7 +31,7 @@ public class AirlinesDao {
                 }
             }
         } catch (Exception ex) {
-            throw new Exception("Falha na busca. " + ex.getMessage());
+            throw new DaoException("Falha na busca. " + ex.getMessage());
         }
     }
 }
