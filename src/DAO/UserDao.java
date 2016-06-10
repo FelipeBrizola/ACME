@@ -15,27 +15,30 @@ import java.sql.ResultSet;
  */
 public class UserDao {
     
-    public User getUser(String email, String pass) throws Exception {
+    public User getUser(String email, String pass) throws DaoException {
         User user = null;
-        String sql = "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
+        String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
         try (Connection connection = dbFactory.getConnection()) {
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setString(1, email);
-                command.setString(2, pass);
                 try (ResultSet result = command.executeQuery()) {
                     if (result.next()) {
                         user = new User();
                         user.setName(result.getString("NAME"));
-                        user.setRg(result.getString("RG"));
-                        user.setCpf(result.getString("CPF"));
-                        user.setPassport(result.getString("PASSPORT"));
+                        user.setDocument(result.getString("DOCUMENT"));
                         user.setEmail(result.getString("EMAIL"));
+                        user.setPassword(result.getString("PASSWORD"));
                     }
-                    return user;
+                    if(user.getPassword().equals(pass)) {
+                        user.setPassword(null);
+                        return user;
+                    }
+                    else
+                        throw new DaoException("Senha incorreta");
                 }
             }
         } catch (Exception ex) {
-            throw new Exception("Falha na busca. " + ex.getMessage());
+            throw new DaoException("Falha ao buscar usuário. " + ex.getMessage());
         }
         
     }

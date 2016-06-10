@@ -1,38 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import javax.swing.SwingUtilities;
+import PRESENTATION.*;
 
 /**
  *
- * @author felipebrizola
+ * @author Júlio
  */
-
-import DAO.AirlineDao;
-import ENTITIES.Airline;
-import java.time.Clock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import HELPER.Crypto;
-
-
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-//        AirlinesDao dao =  new AirlinesDao();
-//        try {
-//            Airline airline = dao.getAirlineById("2B");
-//            System.out.println(airline.getAirlineId());
-//            System.out.println(airline.getAirlineName());
-//        } catch (Exception ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-               
+    private static void createGui() {
+        LoginModel m = new LoginModel();
+        LoginView v = new LoginView();
+        LoginController c = new LoginController();
+        c.associaModel(m);
+        c.associaView(v);
+        v.inicializar();
+        v.associaController(c);
+        c.initModel(null, null);
+        v.mostrar();
     }
     
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                 createGui();
+            }
+        });
+    }
 }

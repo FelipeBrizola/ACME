@@ -12,40 +12,33 @@ package ENTITIES;
 public class User {
     
     String name;
-    String rg;
-    String cpf;
-    String passport;
+    String document;
     String email;
+    String password;
     
     public void setName(String n) {
         name =  n;
     }
-    public void setRg(String rg) {
-        this.rg =  rg;
-    }
-    public void setCpf(String cpf) {
-        this.cpf =  cpf;
-    }
-    public void setPassport(String pass) {
-        passport =  pass;
+    public void setDocument(String doc) {
+        document =  doc;
     }
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setPassword(String pass) {
+        password = pass;
+    }
     public String getName(){
         return name;
     }
-    public String getRg(){
-        return rg;
-    }
-    public String getCpf(){
-        return cpf;
-    }
-    public String getPassport(){
-        return passport;
+    public String getDocument(){
+        return document;
     }
     public String getEmail(){
         return email;
+    }
+    public String getPassword(){
+        return password;
     }
     
 }
