@@ -6,16 +6,17 @@
 package PRESENTATION;
 
 import ENTITIES.User;
+import BUSINESS.UserBusiness;
 
 /**
  *
  * @author felipebrizola
  */
 public class LoginController {
-    private LoginModel model = new LoginModel();
+    private UserBusiness user =  new UserBusiness();
     
     public User login(String e, String p) {
-        return model.login(e, p);
+        return user.login(e, p);
     }
     
 }
