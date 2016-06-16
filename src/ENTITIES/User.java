@@ -15,6 +15,10 @@ public class User {
     String document;
     String email;
     String password;
+
+    public User() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public void setName(String n) {
         name =  n;
