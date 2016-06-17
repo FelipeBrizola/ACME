@@ -23,23 +23,24 @@ public class UserDao {
                 command.setString(1, email);
                 try (ResultSet result = command.executeQuery()) {
                     if (result.next()) {
-                        user = new User();
-                        user.setName(result.getString("NAME"));
-                        user.setDocument(result.getString("DOCUMENT"));
-                        user.setEmail(result.getString("EMAIL"));
-                        user.setPassword(result.getString("PASSWORD"));
+                        String uName = result.getString("NAME");
+                        String uDocument = result.getString("DOCUMENT");
+                        String uEmail = result.getString("EMAIL");
+                        String uPassword = result.getString("PASSWORD");
+                        
+                        user = new User(uName, uDocument, uEmail, uPassword);
                     }
-                    if(user.getPassword().equals(pass)) {
-                        user.setPassword(null);
-                        return user;
-                    }
-                    else
-                        throw new DaoException("Senha incorreta");
                 }
             }
+
         } catch (Exception ex) {
-            throw new DaoException("Falha ao buscar usuário. " + ex.getMessage());
+            throw new DaoException("Falha ao buscar usuário. ");
         }
+        if(user != null && user.getPassword().equals(pass))
+            return user;
+
+        else
+            throw new DaoException("Senha incorreta");
         
     }
     

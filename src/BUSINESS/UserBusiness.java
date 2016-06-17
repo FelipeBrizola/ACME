@@ -5,7 +5,6 @@
  */
 package BUSINESS;
 
-import DAO.DaoException;
 import DAO.UserDao;
 import ENTITIES.User;
 
@@ -15,12 +14,12 @@ import ENTITIES.User;
  */
 public class UserBusiness {
     
-    public User login(String email, String pass) {
+    public User login(String email, String pass) throws Exception {
         UserDao u =  new UserDao();
         try {
             return u.getUser(email, pass);
-        } catch (DaoException ex) {
-            return null;
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
         }
     }
 }

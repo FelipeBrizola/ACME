@@ -17,15 +17,15 @@ public class AirlineDao {
     
         public Airline getAirlineById(String id) throws DaoException {
         Airline airline = null;
-        String sql = "SELECT * FROM AIRLINES WHERE AIRLINE_ID = ?";
+        String sql = "SELECT * FROM AIRLINES WHERE ID = ?";
         try (Connection connection = dbFactory.getConnection()) {
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setString(1, id);
                 try (ResultSet result = command.executeQuery()) {
                     if (result.next()) {
                         airline = new Airline();
-                        airline.setAirlineId(result.getString("AIRLINE_ID"));
-                        airline.setAirlineName(result.getString("AIRLINE_NAME"));
+                        airline.setId(result.getString("ID"));
+                        airline.setName(result.getString("NAME"));
                     }
                     return airline;
                 }

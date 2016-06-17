@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package PRESENTATION;
+import BUSINESS.UserBusiness;
+import ENTITIES.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -82,10 +87,23 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        CompraWindow cw = new CompraWindow();
-        cw.setVisible(rootPaneCheckingEnabled);
-        this.dispose();
+       // CompraWindow cw = new CompraWindow();
+       // cw.setVisible(rootPaneCheckingEnabled);
+       // this.dispose();
         
+        try {
+            UserBusiness ub = new UserBusiness();
+            User u = ub.login(emailField.getText(), PasswordField.getText());
+            MainController mc = new MainController();
+            mc.init();
+            mc.getPrincipalWindow().setVisible(true);
+            dispose();
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+       
+       
 
     }//GEN-LAST:event_loginButtonActionPerformed
 

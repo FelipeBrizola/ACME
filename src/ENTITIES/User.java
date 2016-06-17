@@ -15,23 +15,14 @@ public class User {
     String document;
     String email;
     String password;
-
-    public User() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-    public void setName(String n) {
-        name =  n;
-    }
-    public void setDocument(String doc) {
-        document =  doc;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setPassword(String pass) {
-        password = pass;
-    }
+   public User(String n, String d, String e, String p) {
+       name = n;
+       document = d;
+       email = e;
+       password = p;
+   }
+    
     public String getName(){
         return name;
     }
