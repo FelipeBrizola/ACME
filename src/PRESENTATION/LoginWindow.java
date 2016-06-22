@@ -65,7 +65,7 @@ public class LoginWindow extends javax.swing.JFrame {
                     .addComponent(emailField)
                     .addComponent(PasswordField)
                     .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +80,7 @@ public class LoginWindow extends javax.swing.JFrame {
                     .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(loginButton)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,7 +93,7 @@ public class LoginWindow extends javax.swing.JFrame {
         
         try {
             UserBusiness ub = new UserBusiness();
-            User u = ub.login(emailField.getText(), PasswordField.getText());
+            ub.login(emailField.getText(), PasswordField.getText());
             MainController mc = new MainController();
             mc.init();
             mc.getPrincipalWindow().setVisible(true);
