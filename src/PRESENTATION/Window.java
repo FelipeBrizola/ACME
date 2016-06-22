@@ -5,6 +5,7 @@
  */
 package PRESENTATION;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,10 @@ public class Window extends javax.swing.JFrame {
      */
     public Window() {
         initComponents();
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xSize = (int) tk.getScreenSize().getWidth();
+        int ySize = (int) tk.getScreenSize().getHeight();
+        this.setSize(xSize, ySize);
     }
 
     /**
@@ -48,7 +53,7 @@ public class Window extends javax.swing.JFrame {
         jiFlights = new javax.swing.JInternalFrame();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        javax.swing.JTable jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         confirmFlightButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         searchFlightsButton = new javax.swing.JButton();
@@ -67,68 +72,45 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Pesquisar passagem");
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("ACME - PASSAGEM");
 
         jLabel2.setText("Numero localizador");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setText("Origem:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 35, -1, -1));
 
         jLabel7.setText("Destino:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 79, -1, -1));
 
         jLabel8.setText("Assento");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 123, -1, -1));
 
         jLabel9.setText("Status:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 167, -1, -1));
+
+        fromTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        fromTextField.setEnabled(false);
+        jPanel1.add(fromTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 30, 260, -1));
+
+        toTextField.setEnabled(false);
+        jPanel1.add(toTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 74, 260, -1));
+
+        seatTextField.setEnabled(false);
+        jPanel1.add(seatTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 118, 260, -1));
+
+        statusTextField.setEnabled(false);
+        jPanel1.add(statusTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 162, 260, -1));
 
         dateLabel.setText("Data:");
+        jPanel1.add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 211, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(dateLabel))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(dateTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                    .addComponent(statusTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(seatTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(toTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fromTextField))
-                .addContainerGap(238, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(fromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(toTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(seatTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(statusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateLabel)
-                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        dateTextField.setEnabled(false);
+        jPanel1.add(dateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 206, 260, -1));
 
         javax.swing.GroupLayout jiSearchLayout = new javax.swing.GroupLayout(jiSearch.getContentPane());
         jiSearch.getContentPane().setLayout(jiSearchLayout);
@@ -137,35 +119,43 @@ public class Window extends javax.swing.JFrame {
             .addGroup(jiSearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jiSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jiSearchLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(ticketIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jiSearchLayout.createSequentialGroup()
+                        .addGroup(jiSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jiSearchLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(ticketIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
+                            .addGroup(jiSearchLayout.createSequentialGroup()
+                                .addGap(123, 123, 123)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jiSearchLayout.setVerticalGroup(
             jiSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jiSearchLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jiSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ticketIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(38, 38, 38)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jiFlights.setMaximizable(true);
         jiFlights.setResizable(true);
         jiFlights.setVisible(true);
 
-        jLabel5.setText("Pesquisar voos");
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("ACME - VOOS");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,26 +167,13 @@ public class Window extends javax.swing.JFrame {
             new String [] {
                 "Origem", "Destino", "Valor"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.getTableHeader().setReorderingAllowed(false);
+        ));
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("Origem");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Destino");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Valor");
+        }
 
         confirmFlightButton.setText("Confirmar");
 
@@ -219,9 +196,6 @@ public class Window extends javax.swing.JFrame {
                     .addGroup(jiFlightsLayout.createSequentialGroup()
                         .addGroup(jiFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jiFlightsLayout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jiFlightsLayout.createSequentialGroup()
                                 .addGap(219, 219, 219)
                                 .addComponent(confirmFlightButton))
                             .addGroup(jiFlightsLayout.createSequentialGroup()
@@ -231,13 +205,17 @@ public class Window extends javax.swing.JFrame {
                                 .addComponent(searchFlightsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jiFlightsLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jiFlightsLayout.setVerticalGroup(
             jiFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jiFlightsLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jiFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchFlightsButton))
@@ -263,10 +241,10 @@ public class Window extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jiFlights, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jiSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(385, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jiFlights)
+                    .addComponent(jiSearch))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         pack();
@@ -286,7 +264,7 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void searchFlightsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFlightsButtonActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_searchFlightsButtonActionPerformed
 
     /**
@@ -339,6 +317,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JInternalFrame jiFlights;
     private javax.swing.JInternalFrame jiSearch;

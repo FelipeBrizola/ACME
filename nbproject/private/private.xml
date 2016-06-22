@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/ENTITIES/FlightView.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/LoginWindow.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/dbFactory.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/ENTITIES/User.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/Window.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/BUSINESS/UserBusiness.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/UserDao.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/TicketDao.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/MainController.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/BUSINESS/TicketBusiness.java</file>
+            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/FlightDao.java</file>
         </group>
     </open-files>
 </project-private>
