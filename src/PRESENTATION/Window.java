@@ -6,6 +6,8 @@
 package PRESENTATION;
 
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,7 +57,7 @@ public class Window extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         confirmFlightButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        departureTextField = new javax.swing.JTextField();
         searchFlightsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -159,9 +161,6 @@ public class Window extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
@@ -169,15 +168,10 @@ public class Window extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Origem");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Destino");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Valor");
-        }
 
         confirmFlightButton.setText("Confirmar");
 
-        jTextField1.setText("aaaa/mm/dd");
+        departureTextField.setText("aaaa/mm/dd");
 
         searchFlightsButton.setText("Pesquisar voos");
         searchFlightsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +194,7 @@ public class Window extends javax.swing.JFrame {
                                 .addComponent(confirmFlightButton))
                             .addGroup(jiFlightsLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(departureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(searchFlightsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -217,7 +211,7 @@ public class Window extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jiFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(departureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchFlightsButton))
                 .addGap(52, 52, 52)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,7 +258,11 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void searchFlightsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFlightsButtonActionPerformed
-
+        try {
+            ctrl.buildGrid(jTable1,new BUSINESS.FlightBusiness().getFlights(departureTextField.getText()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_searchFlightsButtonActionPerformed
 
     /**
@@ -306,6 +304,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton confirmFlightButton;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JTextField dateTextField;
+    private javax.swing.JTextField departureTextField;
     private javax.swing.JTextField fromTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -318,7 +317,6 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JInternalFrame jiFlights;
     private javax.swing.JInternalFrame jiSearch;
     private javax.swing.JButton searchFlightsButton;

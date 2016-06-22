@@ -6,8 +6,9 @@
 package PRESENTATION;
 import BUSINESS.*;
 import ENTITIES.TicketView;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import ENTITIES.FlightView;
+import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 /**
  *
@@ -44,4 +45,8 @@ public class MainController {
         
     }
     
+    void buildGrid(JTable table, ArrayList<FlightView> flights) {
+        BuildGrid bg = new BuildGrid();
+        bg.buildGridFlights(table, flights);
+   }
 }
