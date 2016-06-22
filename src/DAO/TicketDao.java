@@ -19,7 +19,7 @@ public class TicketDao {
         TicketView t = null;
         String sql = "select r.from, r.to, t.seat, t.status, f.date from tickets t "
                 + "inner join flights f on t.flight_id = f.id inner join routes r on r.id = f.route_id where f.id = ?";
-        try (Connection connection = dbFactory.getConnection()) {
+        Connection connection = dbFactory.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setInt(1, Integer.parseInt(ticketId));
                 try (ResultSet result = command.executeQuery()) {
@@ -32,12 +32,14 @@ public class TicketDao {
                         String date = result.getString("DATE");
                         t = new TicketView(from, to, seat, status, date);
                     }
-                   return t;
-                }
             }
         } catch (Exception ex) {
             throw new DaoException("Falha ao buscar passagem. ");
         }
+        if (t == null)
+            throw new DaoException("Passagem nao encontrada");
         
+        
+        return t;
     }
 }

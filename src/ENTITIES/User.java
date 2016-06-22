@@ -16,11 +16,10 @@ public class User {
     String email;
     String password;
     
-   public User(String n, String d, String e, String p) {
+   public User(String n, String d, String e) {
        name = n;
        document = d;
        email = e;
-       password = p;
    }
     
     public String getName(){

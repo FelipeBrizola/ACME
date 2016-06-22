@@ -62,20 +62,6 @@ class dbFactory {
         }
         return connection;
     }
-    
-    public static void closeConnection() {
-        if (connection == null) {
-            errorHandler("No connection found", null);
-        }
-        else {
-            try {
-                connection.close();
-                connection = null;
-            }
-            catch (SQLException e) {
-                errorHandler("Failed to close the connection", e);
-            }
-        }
-    }
+   
 }
 

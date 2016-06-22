@@ -17,31 +17,30 @@ public class UserDao {
     
     public User getUser(String email, String pass) throws DaoException {
         User user = null;
-        String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
-        try (Connection connection = dbFactory.getConnection()) {
+        String sql = "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
+        Connection connection = dbFactory.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setString(1, email);
+                command.setString(2, pass);
                 try (ResultSet result = command.executeQuery()) {
                     if (result.next()) {
                         String uName = result.getString("NAME");
                         String uDocument = result.getString("DOCUMENT");
                         String uEmail = result.getString("EMAIL");
-                        String uPassword = result.getString("PASSWORD");
                         
-                        user = new User(uName, uDocument, uEmail, uPassword);
+                        user = new User(uName, uDocument, uEmail);
                     }
                 }
-            }
+           
 
         } catch (Exception ex) {
             throw new DaoException("Falha ao buscar usuário. ");
         }
-        if(user != null && user.getPassword().equals(pass))
-            return user;
-
-        else
-            throw new DaoException("Senha incorreta");
+        if(user == null)
+            throw new DaoException("Usuario ou senha incorreta");
         
+        return user;
+                   
     }
     
 }
