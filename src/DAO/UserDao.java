@@ -18,7 +18,7 @@ public class UserDao {
     public User getUser(String email, String pass) throws DaoException {
         User user = null;
         String sql = "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
-        Connection connection = dbFactory.getConnection();
+        Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setString(1, email);
                 command.setString(2, pass);

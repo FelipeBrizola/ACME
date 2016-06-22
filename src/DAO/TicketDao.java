@@ -17,9 +17,9 @@ public class TicketDao {
     
     public TicketView getTicketView(String ticketId) throws DaoException {
         TicketView t = null;
-        String sql = "select r.from, r.to, t.seat, t.status, f.date from tickets t "
+        String sql = "select r.from, r.to, t.seat, t.status, f.departure from tickets t "
                 + "inner join flights f on t.flight_id = f.id inner join routes r on r.id = f.route_id where f.id = ?";
-        Connection connection = dbFactory.getConnection();
+        Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setInt(1, Integer.parseInt(ticketId));
                 try (ResultSet result = command.executeQuery()) {
@@ -29,7 +29,7 @@ public class TicketDao {
                         String to = result.getString("TO");
                         String seat = result.getString("SEAT");
                         String status = result.getString("STATUS");
-                        String date = result.getString("DATE");
+                        String date = result.getString("DEPARTURE");
                         t = new TicketView(from, to, seat, status, date);
                     }
             }

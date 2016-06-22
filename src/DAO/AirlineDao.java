@@ -18,7 +18,7 @@ public class AirlineDao {
         public Airline getAirlineById(String id) throws DaoException {
         Airline airline = null;
         String sql = "SELECT * FROM AIRLINES WHERE ID = ?";
-        try (Connection connection = dbFactory.getConnection()) {
+        try (Connection connection = dbConnection.getConnection()) {
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setString(1, id);
                 try (ResultSet result = command.executeQuery()) {

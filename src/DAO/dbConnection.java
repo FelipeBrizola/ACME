@@ -15,7 +15,7 @@ import java.sql.SQLException;
  *
  * @author felipebrizola
  */
-class dbFactory {
+class dbConnection {
     
     private static Connection connection = null;
     private final static String ADRESS   = "jdbc:postgresql://localhost";
@@ -25,7 +25,7 @@ class dbFactory {
     private final static String PORT     = "5432";
     private final static String DRIVER   = "org.postgresql.Driver";
     
-    private dbFactory() {}
+    private dbConnection() {}
     
     private static void loadDriver() {
         try {
