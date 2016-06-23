@@ -9,12 +9,12 @@ package ENTITIES;
  *
  * @author felipebrizola
  */
-public class FlightView {
+public class Flight {
     private String from;
     private String to;
     private double price;
     
-    public FlightView(String f, String t, double p) {
+    public Flight(String f, String t, double p) {
         price = p;
         from = f;
         to = t;

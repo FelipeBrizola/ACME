@@ -5,7 +5,8 @@
  */
 package PRESENTATION;
 
-import ENTITIES.FlightView;
+import ENTITIES.Flight;
+import ENTITIES.Ticket;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -16,13 +17,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BuildGrid {
     
-    public void buildGridFlights(JTable grid, ArrayList<FlightView> flights) {
-        DefaultTableModel modeloTable = (DefaultTableModel)grid.getModel();
+    public void buildGridFlights(JTable grid, ArrayList<Flight> flights) {
+        DefaultTableModel modelTable = (DefaultTableModel)grid.getModel();
         
-        for (FlightView f : flights) {
-             modeloTable.addRow(new Object[] { f.getFrom(),
+        for (Flight f : flights) {
+             modelTable.addRow(new Object[] { f.getFrom(),
                     f.getTo(), f.getPrice() });
         }
         
+    }
+    
+    public void buildGridCheckin(JTable grid, ArrayList<Ticket> tickets) {
+        DefaultTableModel modelTable = (DefaultTableModel)grid.getModel();
+        for (Ticket t : tickets) {
+            modelTable.addRow(new Object[] { true,
+                    true, true });
+            
+        }
     }
 }

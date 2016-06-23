@@ -5,8 +5,8 @@
  */
 package PRESENTATION;
 import BUSINESS.*;
-import ENTITIES.TicketView;
-import ENTITIES.FlightView;
+import ENTITIES.Ticket;
+import ENTITIES.Flight;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -30,10 +30,10 @@ public class MainController {
     }
 
     void getTickets(String tickedId, JTextField from, JTextField to, JTextField seat, JTextField status, JTextField date) throws Exception {
-        TicketBusiness t = new TicketBusiness();
-        TicketView tv;
+        TicketBusiness tb = new TicketBusiness();
+        Ticket tv;
         try {
-            tv = t.getTicket(tickedId);
+            tv = tb.getTicket(tickedId);
             from.setText(tv.getFrom());
             to.setText(tv.getTo());
             seat.setText(tv.getSeat());
@@ -44,8 +44,12 @@ public class MainController {
         }
         
     }
+    void buildGridCheckin(JTable table, ArrayList<Ticket> tickets) throws Exception {
+        BuildGrid bg = new BuildGrid();
+        bg.buildGridCheckin(table, tickets);
+    }
     
-    void buildGrid(JTable table, ArrayList<FlightView> flights) {
+    void buildGridFlights(JTable table, ArrayList<Flight> flights) {
         BuildGrid bg = new BuildGrid();
         bg.buildGridFlights(table, flights);
    }

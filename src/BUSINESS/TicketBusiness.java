@@ -4,18 +4,34 @@
  * and open the template in the editor.
  */
 package BUSINESS;
-import ENTITIES.TicketView;
+import ENTITIES.Ticket;
 import DAO.TicketDao;
+import java.util.ArrayList;
 /**
  *
  * @author felipebrizola
  */
 public class TicketBusiness {
     
-    public TicketView getTicket(String ticketId) throws Exception {
+    public Ticket getTicket(String ticketId) throws Exception {
         try {
             TicketDao ticketDao =  new TicketDao();
-            TicketView t = ticketDao.getTicketView(ticketId);
+            Ticket t = ticketDao.getTicketView(ticketId);
+            return t;
+        }
+        
+        catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+    public ArrayList<Ticket> getTickets(String flightId) throws Exception {
+        ArrayList<Ticket> t = new ArrayList<>();
+        TicketDao ticketDao =  new TicketDao();
+         try {
+             // dever ser no validador
+            int flId = Integer.parseInt(flightId);     
+            
+            t = ticketDao.getTickets(flId);
             return t;
         }
         

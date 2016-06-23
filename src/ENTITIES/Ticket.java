@@ -10,34 +10,39 @@ package ENTITIES;
  * @author felipebrizola
  */
 public class Ticket {
-    private String flightId;
-    private String userId;
-    private String status;
-    private String seat;
     
-    public String getFlightId() {
-		return flightId;
-	}
-	public void setFlightId(String flightId) {
-		this.flightId = flightId;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getSeat() {
-		return seat;
-	}
-	public void setSeat(String seat) {
-		this.seat = seat;
-	}
+    private final String from;
+    private final String to;
+    private final String seat;
+    private final String status;
+    private final String date;
+ 
+    public Ticket(String f, String t, String s, String st, String d){
+        from = f;
+        to = t;
+        seat = s;
+        status = st;
+        date = d;
+    }
+    
+    public String getFrom() {
+        return from;
+    }
+    
+    public String getTo() {
+        return to;
+    }
+    
+    public String getSeat() {
+        return seat;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+    
+    public String getDate() {
+        return date;
+    }
     
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package BUSINESS;
-import ENTITIES.FlightView;
+import ENTITIES.Flight;
 import DAO.FlightDao;
 import java.util.ArrayList;
 /**
@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * @author felipebrizola
  */
 public class FlightBusiness {
-    public ArrayList<FlightView> getFlights(String departure) throws Exception {
-        ArrayList<FlightView> flights = new ArrayList<>();
+    public ArrayList<Flight> getFlights(String departure) throws Exception {
+        ArrayList<Flight> flights = new ArrayList<>();
         try {
             FlightDao flightDao =  new FlightDao();
              flights = flightDao.getFlights(departure);
