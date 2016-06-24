@@ -8,6 +8,8 @@ import BUSINESS.*;
 import ENTITIES.Ticket;
 import ENTITIES.Flight;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 /**
@@ -17,6 +19,14 @@ import javax.swing.JTextField;
 public class MainController {
     
     private Window tlWin;
+    private final TicketBusiness ticketBusiness;
+    private final FlightBusiness flightBusiness;
+    
+    public MainController(){
+        ticketBusiness = new TicketBusiness();
+        flightBusiness =  new FlightBusiness();
+    }
+    
     public Window getPrincipalWindow() {
         return tlWin;
     }
@@ -44,13 +54,21 @@ public class MainController {
         }
         
     }
-    void buildGridCheckin(JTable table, ArrayList<Ticket> tickets) throws Exception {
+    void buildGridCheckin(JTable table, String a) throws Exception {
         BuildGrid bg = new BuildGrid();
-        bg.buildGridCheckin(table, tickets);
+        bg.buildGridCheckin(table, ticketBusiness.getTickets(a));
     }
     
-    void buildGridFlights(JTable table, ArrayList<Flight> flights) {
+    void buildGridFlights(JTable table, String departure) throws Exception {
         BuildGrid bg = new BuildGrid();
-        bg.buildGridFlights(table, flights);
+        ArrayList<Flight> flights = new ArrayList<>();
+        try {
+            flights = flightBusiness.getFlights(departure);
+            bg.buildGridFlights(table, flights);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+        
+        
    }
 }

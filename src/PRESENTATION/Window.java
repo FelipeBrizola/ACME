@@ -178,6 +178,11 @@ public class Window extends javax.swing.JFrame {
         confirmFlightButton.setText("Confirmar");
 
         departureTextField.setText("aaaa/mm/dd");
+        departureTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departureTextFieldActionPerformed(evt);
+            }
+        });
 
         searchFlightsButton.setText("Pesquisar voos");
         searchFlightsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -274,7 +279,7 @@ public class Window extends javax.swing.JFrame {
                         .addComponent(flightIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(SearchTicketsButton)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jiCheckinLayout.setVerticalGroup(
             jiCheckinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +291,7 @@ public class Window extends javax.swing.JFrame {
                     .addComponent(SearchTicketsButton))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -294,27 +299,29 @@ public class Window extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jiSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jiCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jiFlights, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jiSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jiCheckin)
-                .addContainerGap())
+                .addGap(132, 132, 132))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jiFlights, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jiCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jiSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jiCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(437, Short.MAX_VALUE))
+                        .addComponent(jiSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jiFlights, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(452, Short.MAX_VALUE))
         );
 
         pack();
@@ -335,7 +342,7 @@ public class Window extends javax.swing.JFrame {
 
     private void searchFlightsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFlightsButtonActionPerformed
         try {
-            ctrl.buildGridFlights(jTable1,new BUSINESS.FlightBusiness().getFlights(departureTextField.getText()));
+            ctrl.buildGridFlights(jTable1, departureTextField.getText());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -343,11 +350,15 @@ public class Window extends javax.swing.JFrame {
 
     private void SearchTicketsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchTicketsButtonActionPerformed
         try {
-            ctrl.buildGridCheckin(jTable2, new BUSINESS.TicketBusiness().getTickets(flightIdTextField.getText()));
+                ctrl.buildGridCheckin(jTable2,flightIdTextField.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_SearchTicketsButtonActionPerformed
+
+    private void departureTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departureTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departureTextFieldActionPerformed
 
     /**
      * @param args the command line arguments

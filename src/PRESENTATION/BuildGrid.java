@@ -29,9 +29,13 @@ public class BuildGrid {
     
     public void buildGridCheckin(JTable grid, ArrayList<Ticket> tickets) {
         DefaultTableModel modelTable = (DefaultTableModel)grid.getModel();
+
         for (Ticket t : tickets) {
-            modelTable.addRow(new Object[] { true,
-                    true, true });
+            if (t.getSeat() != null) {
+                int i = Integer.parseInt(t.getSeat().substring(0,1));
+                int j = Integer.parseInt(t.getSeat().substring(1,2));
+                modelTable.setValueAt(true, i, j);
+            }
             
         }
     }
