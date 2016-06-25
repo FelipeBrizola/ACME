@@ -8,8 +8,6 @@ import BUSINESS.*;
 import ENTITIES.Ticket;
 import ENTITIES.Flight;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 /**
@@ -54,9 +52,9 @@ public class MainController {
         }
         
     }
-    void buildGridCheckin(JTable table, String a) throws Exception {
+    void buildGridCheckin(JTable table, String tickedId) throws Exception {
         BuildGrid bg = new BuildGrid();
-        bg.buildGridCheckin(table, ticketBusiness.getTickets(a));
+        bg.buildGridCheckin(table, ticketBusiness.getTickets(tickedId));
     }
     
     void buildGridFlights(JTable table, String departure) throws Exception {

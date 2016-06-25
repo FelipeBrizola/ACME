@@ -16,10 +16,10 @@ import java.util.ArrayList;
  */
 public class TicketDao {
     
-    public Ticket getTicketView(String ticketId) throws DaoException {
+    public Ticket getTicket(String ticketId) throws DaoException {
         Ticket t = null;
         String sql = "select r.from, r.to, t.seat, t.status, f.departure from tickets t "
-                + "inner join flights f on t.flight_id = f.id inner join routes r on r.id = f.route_id where f.id = ?";
+                + "inner join flights f on t.flight_id = f.id inner join routes r on r.id = f.route_id where t.id = ?";
         Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setInt(1, Integer.parseInt(ticketId));

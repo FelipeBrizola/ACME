@@ -16,7 +16,7 @@ public class TicketBusiness {
     public Ticket getTicket(String ticketId) throws Exception {
         try {
             TicketDao ticketDao =  new TicketDao();
-            Ticket t = ticketDao.getTicketView(ticketId);
+            Ticket t = ticketDao.getTicket(ticketId);
             return t;
         }
         
@@ -24,14 +24,13 @@ public class TicketBusiness {
             throw new Exception(e.getMessage());
         }
     }
-    public ArrayList<Ticket> getTickets(String flightId) throws Exception {
+    public ArrayList<Ticket> getTickets(String ticketId) throws Exception {
         ArrayList<Ticket> t = new ArrayList<>();
         TicketDao ticketDao =  new TicketDao();
          try {
              // dever ser no validador
-            int flId = Integer.parseInt(flightId);     
             
-            t = ticketDao.getTickets(flId);
+            t = ticketDao.getTickets(Integer.parseInt(ticketId));
             return t;
         }
         
