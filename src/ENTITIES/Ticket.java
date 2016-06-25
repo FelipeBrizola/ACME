@@ -16,13 +16,16 @@ public class Ticket {
     private final String seat;
     private final String status;
     private final String date;
+    private final int flightId;
+    
  
-    public Ticket(String f, String t, String s, String st, String d){
+    public Ticket(String f, String t, String s, String st, String d, int flightId){
         from = f;
         to = t;
         seat = s;
         status = st;
         date = d;
+        this.flightId = flightId;
     }
     
     public String getFrom() {
@@ -43,6 +46,9 @@ public class Ticket {
     
     public String getDate() {
         return date;
+    }
+    public int getFlightId() {
+        return flightId;
     }
     
 }

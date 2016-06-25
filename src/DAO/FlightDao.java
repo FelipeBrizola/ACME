@@ -18,7 +18,7 @@ public class FlightDao {
    // select * from flights where to_date(departure, 'DD/MM/YYYY')> '2016-07-10'; 
      public ArrayList<Flight> getFlights(String departure) throws DaoException {
         ArrayList<Flight> flightList = new ArrayList<>();
-        String sql = "SELECT R.FROM, R.TO, F.PRICE \n" +
+        String sql = "SELECT R.FROM, R.TO, F.PRICE, F.ID \n" +
                      "FROM FLIGHTS F \n" +
                      "INNER JOIN ROUTES R \n" +
                      "ON R.ID = F.ID \n" +
@@ -31,8 +31,9 @@ public class FlightDao {
                         String fFrom = result.getString("FROM");
                         String fTo = result.getString("TO");
                         double fPrice = result.getDouble("PRICE");
+                        int fId = result.getInt("ID");
                         
-                        flightList.add(new Flight(fFrom, fTo, fPrice));
+                        flightList.add(new Flight(fFrom, fTo, fPrice, fId));
                     }
                 }
            

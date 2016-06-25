@@ -66,7 +66,14 @@ public class MainController {
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
-        
-        
    }
+    
+    void confirmCheckin(String tickedId, String seat) throws Exception {
+        try {
+            ticketBusiness.confirmCheckin(tickedId, seat, "checkin ok");
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        
+    }
 }

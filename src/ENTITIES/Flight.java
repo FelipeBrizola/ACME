@@ -10,18 +10,24 @@ package ENTITIES;
  * @author felipebrizola
  */
 public class Flight {
-    private String from;
-    private String to;
-    private double price;
+    private final String from;
+    private final String to;
+    private final double price;
+    private final int id;
     
-    public Flight(String f, String t, double p) {
+    
+    public Flight(String f, String t, double p, int id) {
         price = p;
         from = f;
         to = t;
+        this.id = id;
     }
     
     public double getPrice() {
         return price;
+    }
+    public int getId() {
+        return id;
     }
     public String getFrom() {
         return from;

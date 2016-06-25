@@ -18,7 +18,7 @@ public class TicketDao {
     
     public Ticket getTicket(String ticketId) throws DaoException {
         Ticket t = null;
-        String sql = "select r.from, r.to, t.seat, t.status, f.departure from tickets t "
+        String sql = "select r.from, r.to, t.seat, t.status, f.departure, f.id from tickets t "
                 + "inner join flights f on t.flight_id = f.id inner join routes r on r.id = f.route_id where t.id = ?";
         Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
@@ -31,7 +31,8 @@ public class TicketDao {
                         String seat = result.getString("SEAT");
                         String status = result.getString("STATUS");
                         String date = result.getString("DEPARTURE");
-                        t = new Ticket(from, to, seat, status, date);
+                        int flightId =  result.getInt("ID");
+                        t = new Ticket(from, to, seat, status, date, flightId);
                     }
             }
         } catch (Exception ex) {
@@ -45,7 +46,7 @@ public class TicketDao {
     
     public ArrayList<Ticket> getTickets(int flightId) throws DaoException {
         ArrayList<Ticket> TicketViewList = new ArrayList<>();
-        String sql = "	select * from tickets where flight_id = ?";
+        String sql = "SELECT * FROM tickets WHERE flight_id = ?";
         Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                command.setInt(1, flightId);
@@ -53,7 +54,7 @@ public class TicketDao {
                     while(result.next()) {
                         String seat = result.getString("SEAT");
                         String status = result.getString("STATUS");
-                        TicketViewList.add(new Ticket(null, null, seat, status, null));
+                        TicketViewList.add(new Ticket(null, null, seat, status, null, 0));
                     }
                 }
 
@@ -64,5 +65,23 @@ public class TicketDao {
             throw new DaoException("Não há voo");
         
         return TicketViewList;
+    }
+
+    public boolean confirmCheckin(String seat, int ticketId, String status) throws DaoException {
+        int rows = 0;
+        String sql = "UPDATE tickets SET seat = ?, status = ? WHERE id = ?";
+         Connection connection = dbConnection.getConnection();
+            try (PreparedStatement command = connection.prepareStatement(sql)) {
+                command.setString(1, seat);
+                command.setString(2, status);
+                command.setInt(3, ticketId);
+                rows = command.executeUpdate();
+            
+        } catch (Exception ex) {
+            throw new DaoException("Falha ao confirmar checkin");
+        }
+            if(rows > 0)
+                return true;
+            return false;
     }
 }
