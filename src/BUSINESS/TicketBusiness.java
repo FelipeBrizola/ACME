@@ -43,12 +43,15 @@ public class TicketBusiness {
     
     public boolean confirmCheckin(String ticketId, String seat, String status) throws Exception {
         int flightId = 0;
+        Ticket myTicket;
         ArrayList<Ticket> tickets = new ArrayList<>();
         TicketDao ticketDao =  new TicketDao();
          try {
-            flightId = this.getTicket(ticketId).getFlightId();
+             myTicket = this.getTicket(ticketId);
+            flightId = myTicket.getFlightId();
             tickets = ticketDao.getTickets(flightId);
-            if (isReadyToCheckin(seat, tickets)) {
+            
+            if (isReadyToCheckin(seat, tickets, myTicket)) {
                 ticketDao.confirmCheckin(seat, Integer.parseInt(ticketId), status);
                 return true;
             }                            
@@ -82,11 +85,12 @@ public class TicketBusiness {
         return true;
     }
     
-    private boolean isReadyToCheckin(String seat, ArrayList<Ticket> tickets) throws Exception {
+    private boolean isReadyToCheckin(String seat, ArrayList<Ticket> tickets, Ticket myTicket) throws Exception {
         for(int i = 0; i < tickets.size(); i++) {
             if (tickets.get(i).getSeat() != null && tickets.get(i).getSeat().equals(seat))
                 throw new Exception("O assento já foi escolhido por outro passageiro. Escolha outro");
-            
+            if (myTicket.getStatus().equals("checkin ok"))
+                throw new Exception("O checkin ja foi realizado anteriormente.");
         }
         return true;
     }
