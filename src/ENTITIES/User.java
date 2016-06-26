@@ -15,11 +15,13 @@ public class User {
     String document;
     String email;
     String password;
+    int id;
     
-   public User(String n, String d, String e) {
+   public User(int id, String n, String d, String e) {
        name = n;
        document = d;
        email = e;
+       this.id = id;
    }
     
     public String getName(){
@@ -33,6 +35,9 @@ public class User {
     }
     public String getPassword(){
         return password;
+    }
+    public int getId(){
+        return id;
     }
     
 }

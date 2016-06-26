@@ -22,4 +22,13 @@ public class UserBusiness {
             throw new Exception(ex.getMessage());
         }
     }
+    
+    public boolean insertUser(String name, String doc) throws Exception {
+        UserDao u =  new UserDao();
+        try {
+            return u.insertUser(name, doc);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
 }

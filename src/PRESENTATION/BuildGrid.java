@@ -21,8 +21,8 @@ public class BuildGrid {
         DefaultTableModel modelTable = (DefaultTableModel)grid.getModel();
         
         for (Flight f : flights) {
-             modelTable.addRow(new Object[] { f.getFrom(),
-                    f.getTo(), f.getPrice() });
+             modelTable.addRow(new Object[] {f.getId(), f.getFrom(),
+                    f.getTo(), f.getPrice(), f.getSalesId() });
         }
         
     }
@@ -39,4 +39,5 @@ public class BuildGrid {
             
         }
     }
+    
 }

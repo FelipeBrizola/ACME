@@ -6,18 +6,46 @@
 package BUSINESS;
 import ENTITIES.Flight;
 import DAO.FlightDao;
+import ENTITIES.Promotion;
 import java.util.ArrayList;
+import javafx.util.Pair;
 /**
  *
  * @author felipebrizola
  */
 public class FlightBusiness {
+    
     public ArrayList<Flight> getFlights(String departure) throws Exception {
         ArrayList<Flight> flights = new ArrayList<>();
         try {
             FlightDao flightDao =  new FlightDao();
              flights = flightDao.getFlights(departure);
             return flights;
+        }
+        
+        catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+    
+    public Promotion getDiscount(String flightId, String originalPrice) throws Exception {
+        Pair<String, String> discountPair = null;
+        Promotion promotion = null;
+        FlightDao flightDao =  new FlightDao();
+        double origPriceParsed = Double.parseDouble(originalPrice);
+        try {
+            discountPair = flightDao.getDiscount(Integer.parseInt(flightId));
+            
+            if (discountPair == null) {
+                promotion = new Promotion(origPriceParsed, 0.0, null);
+                return promotion;
+            }
+            
+            double discontedPrice = origPriceParsed - (origPriceParsed * (Double.parseDouble(discountPair.getValue()) / 100));
+            promotion = new Promotion(origPriceParsed, discontedPrice, discountPair.getKey());
+            
+             return promotion;
+            
         }
         
         catch (Exception e) {

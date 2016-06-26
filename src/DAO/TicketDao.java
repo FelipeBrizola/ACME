@@ -84,4 +84,37 @@ public class TicketDao {
                 return true;
             return false;
     }
+    
+    public boolean insertTicket(String flightId, int userId, String status) throws DaoException {
+        int rows = 0;
+        String sql = "INSERT INTO TICKETS(FLIGHT_ID, USER_ID, STATUS) VALUES(?, ?, ?)";
+         Connection connection = dbConnection.getConnection();
+            try (PreparedStatement command = connection.prepareStatement(sql)) {
+                command.setString(1, flightId);
+                command.setInt(2, userId);
+                command.setString(3, status);
+                rows = command.executeUpdate();
+            
+        } catch (Exception ex) {
+            throw new DaoException("Falha ao criar passagem");
+        }
+            if(rows > 0)
+                return true;
+            return false;
+    }
+    
+    public int accentsBusy(String flightId) throws DaoException {
+        int rows = 0;
+        String sql = "select count (*) from tickets where flight_id = ?";
+         Connection connection = dbConnection.getConnection();
+            try (PreparedStatement command = connection.prepareStatement(sql)) {
+                command.setString(1, flightId);
+                rows = command.executeUpdate();
+            
+        } catch (Exception ex) {
+            throw new DaoException("Falha ao buscar acentos disponiveis.");
+        }
+            return rows;
+    }
+    
 }

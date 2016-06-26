@@ -6,6 +6,8 @@
 package BUSINESS;
 import ENTITIES.Ticket;
 import DAO.TicketDao;
+import DAO.UserDao;
+import ENTITIES.User;
 import java.util.ArrayList;
 /**
  *
@@ -56,6 +58,28 @@ public class TicketBusiness {
         }
 
          return false;
+    }
+    
+    public boolean buyTicket(String name, String doc, String flightId) throws Exception {
+        UserDao userDao = new UserDao();
+        User user;
+        TicketDao ticketDao =  new TicketDao();
+        try {
+            if (ticketDao.accentsBusy(flightId) >= 48)
+                throw new Exception("Não há lugares disponiveis nesse voo. Pf selecione outro");
+            
+            if (userDao.exists(name, doc) == 0) 
+                userDao.insertUser(name, doc);
+            
+            user = userDao.getUserByDoc(doc);
+                
+            // validat hora da compra para saber ql status setar
+            ticketDao.insertTicket(flightId, user.getId(), "Pendente");
+            
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        return true;
     }
     
     private boolean isReadyToCheckin(String seat, ArrayList<Ticket> tickets) throws Exception {

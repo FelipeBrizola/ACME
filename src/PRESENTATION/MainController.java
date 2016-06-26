@@ -7,7 +7,9 @@ package PRESENTATION;
 import BUSINESS.*;
 import ENTITIES.Ticket;
 import ENTITIES.Flight;
+import ENTITIES.Promotion;
 import java.util.ArrayList;
+import javafx.util.Pair;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 /**
@@ -73,7 +75,27 @@ public class MainController {
             ticketBusiness.confirmCheckin(tickedId, seat, "checkin ok");
         } catch (Exception e) {
             throw new Exception(e.getMessage());
+        }   
+    }
+    
+    void getPromotion(String flightId, String originalPrice, JTextField discountValueTextField, JTextField descriptionTextField) throws Exception {
+        Promotion p;
+        try {
+            p = flightBusiness.getDiscount(flightId, originalPrice);
+            
+            descriptionTextField.setText(p.getDescription());
+            discountValueTextField.setText( Double.toString(p.getDiscounted()) );
+                        
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
         
+    }
+    void buyTicket(String name, String doc, String flightId) throws Exception {
+        try {
+            ticketBusiness.buyTicket(name, doc, flightId);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }
