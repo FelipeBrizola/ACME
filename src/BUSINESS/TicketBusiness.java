@@ -89,8 +89,8 @@ public class TicketBusiness {
         for(int i = 0; i < tickets.size(); i++) {
             if (tickets.get(i).getSeat() != null && tickets.get(i).getSeat().equals(seat))
                 throw new Exception("O assento já foi escolhido por outro passageiro. Escolha outro");
-            if (myTicket.getStatus().equals("checkin ok"))
-                throw new Exception("O checkin ja foi realizado anteriormente.");
+            if (!myTicket.getStatus().equals("check-in aberto"))
+                throw new Exception("Check-in indisponível");
         }
         return true;
     }

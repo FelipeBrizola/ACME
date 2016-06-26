@@ -55,12 +55,12 @@ public class MainController {
         
     }
     void buildGridCheckin(JTable table, String tickedId) throws Exception {
-        BuildGrid bg = new BuildGrid();
+        GridHelper bg = new GridHelper();
         bg.buildGridCheckin(table, ticketBusiness.getTickets(tickedId));
     }
     
     void buildGridFlights(JTable table, String departure) throws Exception {
-        BuildGrid bg = new BuildGrid();
+        GridHelper bg = new GridHelper();
         ArrayList<Flight> flights = new ArrayList<>();
         try {
             flights = flightBusiness.getFlights(departure);

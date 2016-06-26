@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author felipebrizola
  */
-public class BuildGrid {
+public class GridHelper {
     
     public void buildGridFlights(JTable grid, ArrayList<Flight> flights) {
         DefaultTableModel modelTable = (DefaultTableModel)grid.getModel();

@@ -8,6 +8,7 @@ package PRESENTATION;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import BUSINESS.ValidatorHelper;
 
 /**
  *
@@ -499,6 +500,10 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_departureTextFieldActionPerformed
 
     private void confirmCheckinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmCheckinButtonActionPerformed
+        if (ValidatorHelper.getInstance().validateConfirmCheckin(ticketIdTextField.getText())){
+           JOptionPane.showMessageDialog(null, "O campo de pesquisa de passagem deve conter entre 1 e 3 caracteres");
+        }
+        else {
         String row = Integer.toString(jTable2.getSelectedRow());
         String column = Integer.toString(jTable2.getSelectedColumn());
         try {
@@ -507,6 +512,7 @@ public class Window extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
         
     }//GEN-LAST:event_confirmCheckinButtonActionPerformed
 
@@ -527,6 +533,13 @@ public class Window extends javax.swing.JFrame {
     private void buyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyTicketButtonActionPerformed
         int row = jTable1.getSelectedRow();
         String flightId = jTable1.getValueAt(row, 0).toString();
+        if (ValidatorHelper.getInstance().validateName(nameTextField.getText())){
+            JOptionPane.showMessageDialog(null, "O campo nome deve conter entre 5 e 70 caracteres");
+        }
+        else if (ValidatorHelper.getInstance().validateDocument(docTextField.getText())){
+            JOptionPane.showMessageDialog(null, "O campo documento deve conter 11 caracteres");
+        }
+        else {
         try {
             ctrl.buyTicket(nameTextField.getText(), docTextField.getText(), flightId);
         } catch (Exception ex) {
@@ -534,6 +547,7 @@ public class Window extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "compra realizada com sucesso");
         jiBuyTicket.setVisible(false);
+        }
     }//GEN-LAST:event_buyTicketButtonActionPerformed
 
     /**
