@@ -90,7 +90,7 @@ public class TicketDao {
         String sql = "INSERT INTO TICKETS(FLIGHT_ID, USER_ID, STATUS) VALUES(?, ?, ?)";
          Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
-                command.setString(1, flightId);
+                command.setInt(1, Integer.parseInt(flightId));
                 command.setInt(2, userId);
                 command.setString(3, status);
                 rows = command.executeUpdate();
@@ -105,11 +105,17 @@ public class TicketDao {
     
     public int accentsBusy(String flightId) throws DaoException {
         int rows = 0;
-        String sql = "select count (*) from tickets where flight_id = ?";
+        String sql = "select  count(*) from flights f\n" +
+                     "inner join tickets t\n" +
+                     "on t.flight_id = f.id\n" +
+                     "where f.id = ?";
          Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
-                command.setString(1, flightId);
-                rows = command.executeUpdate();
+                command.setInt(1, Integer.parseInt(flightId));
+                try (ResultSet result = command.executeQuery()) {
+                    if (result.next())
+                        rows = result.getInt(1);
+                }
             
         } catch (Exception ex) {
             throw new DaoException("Falha ao buscar acentos disponiveis.");

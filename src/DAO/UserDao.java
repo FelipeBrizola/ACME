@@ -93,7 +93,10 @@ public class UserDao {
                 try (PreparedStatement command = connection.prepareStatement(sql)) {
                     command.setString(1, name);
                     command.setString(2, doc);
-                    rows = command.executeUpdate();
+                    try (ResultSet result = command.executeQuery()) {
+                    if (result.next())
+                        rows = result.getInt(1);
+                    }
 
             } catch (Exception ex) {
                 throw new DaoException("Falha ao verificar existencia de usuario");
