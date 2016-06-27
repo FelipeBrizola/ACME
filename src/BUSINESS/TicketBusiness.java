@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author felipebrizola
  */
-public class TicketBusiness {
+public class TicketBusiness implements ITicketBusiness{
     
     public Ticket getTicket(String ticketId) throws Exception {
         try {

@@ -15,8 +15,8 @@ import javafx.util.Pair;
  *
  * @author felipebrizola
  */
-public class FlightDao {
-   // select * from flights where to_date(departure, 'DD/MM/YYYY')> '2016-07-10'; 
+public class FlightDao implements IFlightDao {
+
      public ArrayList<Flight> getFlights(String departure) throws DaoException {
         ArrayList<Flight> flightList = new ArrayList<>();
         String sql = "SELECT R.FROM, R.TO, F.PRICE, F.ID, F.SALES_ID \n" +

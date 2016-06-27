@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author felipebrizola
  */
-public class TicketDao {
+public class TicketDao implements ITIcketDao {
     
     public Ticket getTicket(String ticketId) throws DaoException {
         Ticket t = null;

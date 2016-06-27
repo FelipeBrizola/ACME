@@ -488,10 +488,15 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFlightsButtonActionPerformed
 
     private void SearchTicketsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchTicketsButtonActionPerformed
-        try {
-            ctrl.buildGridCheckin(jTable2,ticketIdTextField.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        if (ValidatorHelper.getInstance().validateConfirmCheckin(ticketIdTextField.getText())){
+           JOptionPane.showMessageDialog(null, "O campo de pesquisa de passagem deve conter entre 1 e 3 caracteres");
+        }
+        else {
+            try {
+                ctrl.buildGridCheckin(jTable2,ticketIdTextField.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
         }
     }//GEN-LAST:event_SearchTicketsButtonActionPerformed
 

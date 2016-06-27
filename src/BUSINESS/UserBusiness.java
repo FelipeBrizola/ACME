@@ -12,7 +12,7 @@ import ENTITIES.User;
  *
  * @author felipebrizola
  */
-public class UserBusiness {
+public class UserBusiness implements IUserBusiness {
     
     public User login(String email, String pass) throws Exception {
         UserDao u =  new UserDao();

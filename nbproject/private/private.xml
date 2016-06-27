@@ -4,15 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/ENTITIES/Flight.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/BuildGrid.java</file>
-            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/Window.java</file>
+            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/BUSINESS/ValidatorHelper.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/BUSINESS/UserBusiness.java</file>
+            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/Window.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/dbConnection.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/BUSINESS/FlightBusiness.java</file>
+            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/ENTITIES/Promotion.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/ENTITIES/Ticket.java</file>
+            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/GridHelper.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/BUSINESS/TicketBusiness.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/PRESENTATION/LoginWindow.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/RouteDao.java</file>
+            <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/ENTITIES/User.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/UserDao.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/DAO/FlightDao.java</file>
             <file>file:/Users/felipebrizola/NetBeansProjects/ACME/src/ENTITIES/Airport.java</file>

@@ -22,7 +22,7 @@ public class  ValidatorHelper {
     }
 
     public boolean validateConfirmCheckin(String value) {
-        return value.length() < 3 ? true : false;
+        return value.length() > 3 ? true : false;
     }
     public boolean validateName(String value) {
         return value.length() < 5 || value.length() > 70 ? true : false;

@@ -13,8 +13,9 @@ import javafx.util.Pair;
  *
  * @author felipebrizola
  */
-public class FlightBusiness {
+public class FlightBusiness implements IFlightBusiness{
     
+    @Override
     public ArrayList<Flight> getFlights(String departure) throws Exception {
         ArrayList<Flight> flights = new ArrayList<>();
         try {
@@ -28,6 +29,7 @@ public class FlightBusiness {
         }
     }
     
+    @Override
     public Promotion getDiscount(String flightId, String originalPrice) throws Exception {
         Pair<String, String> discountPair = null;
         Promotion promotion = null;
@@ -37,7 +39,7 @@ public class FlightBusiness {
             discountPair = flightDao.getDiscount(Integer.parseInt(flightId));
             
             if (discountPair == null) {
-                promotion = new Promotion(origPriceParsed, 0.0, null);
+                promotion = new Promotion(origPriceParsed, origPriceParsed, "n/a");
                 return promotion;
             }
             
