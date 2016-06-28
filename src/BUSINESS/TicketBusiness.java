@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package BUSINESS;
+import DAO.DaoException;
 import ENTITIES.Ticket;
 import DAO.TicketDao;
 import DAO.UserDao;
+import DAO.FlightDao;
 import ENTITIES.User;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 /**
  *
  * @author felipebrizola
@@ -47,7 +52,7 @@ public class TicketBusiness implements ITicketBusiness{
         ArrayList<Ticket> tickets = new ArrayList<>();
         TicketDao ticketDao =  new TicketDao();
          try {
-             myTicket = this.getTicket(ticketId);
+            myTicket = this.getTicket(ticketId);
             flightId = myTicket.getFlightId();
             tickets = ticketDao.getTickets(flightId);
             
@@ -75,9 +80,10 @@ public class TicketBusiness implements ITicketBusiness{
                 userDao.insertUser(name, doc);
             
             user = userDao.getUserByDoc(doc);
-                
-            // validat hora da compra para saber ql status setar
-            ticketDao.insertTicket(flightId, user.getId(), "Pendente");
+            
+            String status = getStatus(flightId);
+            
+            ticketDao.insertTicket(flightId, user.getId(), status);
             
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -93,6 +99,30 @@ public class TicketBusiness implements ITicketBusiness{
                 throw new Exception("Check-in indisponível");
         }
         return true;
+    }
+
+    private String getStatus(String flightId) throws Exception {
+        FlightDao flightDao = new FlightDao();
+        String status = null;
+        try {
+            String departure = flightDao.getFlight(Integer.parseInt(flightId));
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date()); 
+            c.add(Calendar.DATE, 3); 
+            
+            if(c.getTime().compareTo(sdf.parse(departure)) < 0)
+                status = "pendente";
+            else
+                status = "check-in aberto";
+                                
+            
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+            
+       return status;
     }
 
 }

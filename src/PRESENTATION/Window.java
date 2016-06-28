@@ -187,7 +187,16 @@ public class Window extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Voo", "Origem", "Destino", "Valor"
@@ -317,9 +326,6 @@ public class Window extends javax.swing.JFrame {
                     .addGroup(jiCheckinLayout.createSequentialGroup()
                         .addGroup(jiCheckinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jiCheckinLayout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jiCheckinLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -334,6 +340,10 @@ public class Window extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jiCheckinLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jiCheckinLayout.setVerticalGroup(
             jiCheckinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,15 +503,20 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_searchTicketButtonActionPerformed
 
     private void searchFlightsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFlightsButtonActionPerformed
-        try {
-            ctrl.buildGridFlights(jTable1, departureTextField.getText());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        if (!ValidatorHelper.getInstance().validateDate(departureTextField.getText())){
+           JOptionPane.showMessageDialog(null, "O campo de pesquisa deve ser no formato: dd/mm/aaaa");
+        }
+        else {
+            try {
+                ctrl.buildGridFlights(jTable1, departureTextField.getText());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         }
     }//GEN-LAST:event_searchFlightsButtonActionPerformed
 
     private void SearchTicketsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchTicketsButtonActionPerformed
-        if (ValidatorHelper.getInstance().validateConfirmCheckin(ticketIdTextField.getText())){
+        if (!ValidatorHelper.getInstance().validateConfirmCheckin(ticketIdTextField.getText())){
            JOptionPane.showMessageDialog(null, "O campo de pesquisa de passagem deve conter entre 1 e 3 caracteres");
         }
         else {
@@ -518,34 +533,40 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_departureTextFieldActionPerformed
 
     private void confirmCheckinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmCheckinButtonActionPerformed
-        if (ValidatorHelper.getInstance().validateConfirmCheckin(ticketIdTextField.getText())){
+          String row = Integer.toString(jTable2.getSelectedRow());
+          String column = Integer.toString(jTable2.getSelectedColumn());
+        if (!ValidatorHelper.getInstance().validateConfirmCheckin(ticketIdTextField.getText())){
            JOptionPane.showMessageDialog(null, "O campo de pesquisa de passagem deve conter entre 1 e 3 caracteres");
         }
-        else {
-        String row = Integer.toString(jTable2.getSelectedRow());
-        String column = Integer.toString(jTable2.getSelectedColumn());
-        try {
-            ctrl.confirmCheckin(ticketIdTextField.getText(), row+column);
-            JOptionPane.showMessageDialog(null, "Checkin realizado com sucesso");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        else if(row.equals("-1") || column.equals("-1")) {
+            JOptionPane.showMessageDialog(null, "Escolha um acento para realiazar o check-in.");
         }
+        else {
+            try {
+                ctrl.confirmCheckin(ticketIdTextField.getText(), row+column);
+                JOptionPane.showMessageDialog(null, "Checkin realizado com sucesso");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
     }
         
     }//GEN-LAST:event_confirmCheckinButtonActionPerformed
 
     private void confirmFlightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmFlightButtonActionPerformed
 
-        int row = jTable1.getSelectedRow();
-        String flightId = jTable1.getValueAt(row, 0).toString();
-        String price = jTable1.getValueAt(row, 3).toString();
         try {
+            int row = jTable1.getSelectedRow();
+            String flightId = jTable1.getValueAt(row, 0).toString();
+            String price = jTable1.getValueAt(row, 3).toString();
             jiBuyTicket(flightId, price, priceWithDiscTextField, descriptionTextField);
             jiBuyTicket.setVisible(true);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }      
-        
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Primeiro informe a data"); 
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+            
     }//GEN-LAST:event_confirmFlightButtonActionPerformed
 
     private void buyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyTicketButtonActionPerformed
@@ -560,10 +581,11 @@ public class Window extends javax.swing.JFrame {
         else {
         try {
             ctrl.buyTicket(nameTextField.getText(), docTextField.getText(), flightId);
+            JOptionPane.showMessageDialog(null, "compra realizada com sucesso");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(null, "compra realizada com sucesso");
+        
         jiBuyTicket.setVisible(false);
         }
     }//GEN-LAST:event_buyTicketButtonActionPerformed

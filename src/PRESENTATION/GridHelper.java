@@ -20,6 +20,8 @@ public class GridHelper {
     public void buildGridFlights(JTable grid, ArrayList<Flight> flights) {
         DefaultTableModel modelTable = (DefaultTableModel)grid.getModel();
         
+        resetGridFlights(modelTable);
+        
         for (Flight f : flights) {
              modelTable.addRow(new Object[] {f.getId(), f.getFrom(),
                     f.getTo(), f.getPrice(), f.getSalesId() });
@@ -30,7 +32,7 @@ public class GridHelper {
     public void buildGridCheckin(JTable grid, ArrayList<Ticket> tickets) {
         DefaultTableModel modelTable = (DefaultTableModel)grid.getModel();
         
-        resetGrid(modelTable);
+        resetGridCheckin(modelTable);
         
         for (Ticket t : tickets) {
             if (t.getSeat() != null) {
@@ -42,7 +44,7 @@ public class GridHelper {
         }
     }
     
-    private void resetGrid(DefaultTableModel modelTable) {
+    private void resetGridCheckin(DefaultTableModel modelTable) {
         int rows = modelTable.getRowCount();
         int columns = modelTable.getColumnCount();
         
@@ -51,6 +53,11 @@ public class GridHelper {
                 modelTable.setValueAt(false, i, j);
             
         
+    }
+    private void resetGridFlights(DefaultTableModel modelTable) {
+        for( int i = modelTable.getRowCount() - 1; i >= 0; i-- ) {
+            modelTable.removeRow(i);
+         }
     }
     
 }

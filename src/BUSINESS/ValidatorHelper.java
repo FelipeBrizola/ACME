@@ -22,12 +22,15 @@ public class  ValidatorHelper {
     }
 
     public boolean validateConfirmCheckin(String value) {
-        return value.length() > 3 ? true : false;
+        return value.length() < 3 && value.length() > 0 ? true : false;
     }
     public boolean validateName(String value) {
         return value.length() < 5 || value.length() > 70 ? true : false;
     }
     public boolean validateDocument(String value) {
         return value.length() != 11 ? true : false;
+    }
+    public boolean validateDate (String date) {
+        return date.matches("\\d{2}/\\d{2}/\\d{4}");
     }
 }

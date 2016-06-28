@@ -7,7 +7,10 @@ package BUSINESS;
 import ENTITIES.Flight;
 import DAO.FlightDao;
 import ENTITIES.Promotion;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 import javafx.util.Pair;
 /**
  *
@@ -18,6 +21,21 @@ public class FlightBusiness implements IFlightBusiness {
     @Override
     public ArrayList<Flight> getFlights(String departure) throws Exception {
         ArrayList<Flight> flights = new ArrayList<>();
+        
+        Date dNow = new Date();
+        SimpleDateFormat ftDate = new SimpleDateFormat ("dd/MM/yyyy");
+        Date dBefore = ftDate.parse(departure);
+        
+        // passagem de hj
+        if(departure.equals(ftDate.format(dNow))) {
+            SimpleDateFormat ftHour = new SimpleDateFormat ("HH:mm");
+            departure = departure + " - " + ftHour.format(dNow);
+        }
+        // passagem anterior a hoje
+        else if (dNow.compareTo(dBefore) > 0)
+            throw new Exception("A data informada deve ser maior ou igual a data de hoje.");
+                
+        
         try {
             FlightDao flightDao =  new FlightDao();
              flights = flightDao.getFlights(departure);

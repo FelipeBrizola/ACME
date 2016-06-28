@@ -23,11 +23,16 @@ public class FlightDao implements IFlightDao {
         String sql = "SELECT R.FROM, R.TO, F.PRICE, F.ID, F.SALES_ID \n" +
                      "FROM FLIGHTS F \n" +
                      "INNER JOIN ROUTES R \n" +
-                     "ON R.ID = F.ID \n" +
-                     "WHERE to_date(F.DEPARTURE, 'DD/MM/YYYY') > '2016-07-10'";
+                     "ON R.ID = F.ID ";
+        // pesquisa de voo no mesmo dia
+        if (departure.length() > 10)
+            sql = sql + "where to_timestamp(?, 'dd/mm/yyyy - HH24:MI') <= to_timestamp(departure, 'dd/mm/yyyy - HH24:MI');";
+        // voos futuros
+        else
+            sql = sql + "where to_timestamp(? , 'dd/mm/yyyy') = to_timestamp(departure, 'dd/mm/yyyy');";
         Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
-               // command.setString(1, departure);
+                command.setString(1, departure);
                 try (ResultSet result = command.executeQuery()) {
                     while(result.next()) {
                         String fFrom = result.getString("FROM");
@@ -72,5 +77,26 @@ public class FlightDao implements IFlightDao {
         }
 
         return discountPair;
+     }
+     
+     @Override
+     public String getFlight(int flightId) throws DaoException {
+        String departure = null;
+        String sql = "select departure from flights where id = ?";
+        Connection connection = dbConnection.getConnection();
+            try (PreparedStatement command = connection.prepareStatement(sql)) {
+                command.setInt(1, flightId);
+                try (ResultSet result = command.executeQuery()) {
+                    while(result.next()) {
+                        departure = result.getString("DEPARTURE");
+
+                    }
+                }   
+
+        } catch (Exception ex) {
+            throw new DaoException("Falha ao buscar voo ");
+        }
+
+        return departure;
      }
 }
