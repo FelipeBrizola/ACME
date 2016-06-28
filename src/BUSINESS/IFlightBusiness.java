@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author felipebrizola
  */
 public interface IFlightBusiness {
-   public ArrayList<Flight> getFlights(String departure) throws Exception; 
-   public Promotion getDiscount(String flightId, String originalPrice) throws Exception;
+    ArrayList<Flight> getFlights(String departure) throws Exception; 
+    Promotion getDiscount(String flightId, String originalPrice) throws Exception;
 }
 

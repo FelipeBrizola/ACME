@@ -22,10 +22,6 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        int xSize = (int) tk.getScreenSize().getWidth();
-        int ySize = (int) tk.getScreenSize().getHeight();
-        this.setSize(xSize, ySize);
     }
 
     /**
@@ -103,10 +99,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-       // CompraWindow cw = new CompraWindow();
-       // cw.setVisible(rootPaneCheckingEnabled);
-       // this.dispose();
-        
+ 
         try {
             UserBusiness ub = new UserBusiness();
             ub.login(emailField.getText(), PasswordField.getText());
@@ -116,7 +109,7 @@ public class LoginWindow extends javax.swing.JFrame {
             dispose();
         }
         catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
        
        

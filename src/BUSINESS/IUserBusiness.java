@@ -12,6 +12,6 @@ import ENTITIES.User;
  * @author felipebrizola
  */
 public interface IUserBusiness {
-    public User login(String email, String pass) throws Exception;
-    public boolean insertUser(String name, String doc) throws Exception;
+     User login(String email, String pass) throws Exception;
+     boolean insertUser(String name, String doc) throws Exception;
 }

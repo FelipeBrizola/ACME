@@ -13,7 +13,7 @@ import javafx.util.Pair;
  *
  * @author felipebrizola
  */
-public class FlightBusiness implements IFlightBusiness{
+public class FlightBusiness implements IFlightBusiness {
     
     @Override
     public ArrayList<Flight> getFlights(String departure) throws Exception {

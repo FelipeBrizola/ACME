@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * @author felipebrizola
  */
 public interface ITIcketDao {
-    public Ticket getTicket(String ticketId) throws DaoException;
-    public ArrayList<Ticket> getTickets(int flightId) throws DaoException;
-    public boolean confirmCheckin(String seat, int ticketId, String status) throws DaoException;
-    public boolean insertTicket(String flightId, int userId, String status) throws DaoException;
-    public int accentsBusy(String flightId) throws DaoException;
+     Ticket getTicket(String ticketId) throws DaoException;
+     ArrayList<Ticket> getTickets(int flightId) throws DaoException;
+     boolean confirmCheckin(String seat, int ticketId, String status) throws DaoException;
+     boolean insertTicket(String flightId, int userId, String status) throws DaoException;
+     int accentsBusy(String flightId) throws DaoException;
 }
 
 

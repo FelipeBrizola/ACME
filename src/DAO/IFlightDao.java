@@ -14,8 +14,8 @@ import javafx.util.Pair;
  * @author felipebrizola
  */
 public interface IFlightDao {
-    public ArrayList<Flight> getFlights(String departure) throws DaoException;
-    public Pair<String, String> getDiscount(int flightId) throws DaoException;
+     ArrayList<Flight> getFlights(String departure) throws DaoException;
+     Pair<String, String> getDiscount(int flightId) throws DaoException;
 }
 
 

@@ -17,6 +17,7 @@ import javafx.util.Pair;
  */
 public class FlightDao implements IFlightDao {
 
+     @Override
      public ArrayList<Flight> getFlights(String departure) throws DaoException {
         ArrayList<Flight> flightList = new ArrayList<>();
         String sql = "SELECT R.FROM, R.TO, F.PRICE, F.ID, F.SALES_ID \n" +
@@ -49,6 +50,7 @@ public class FlightDao implements IFlightDao {
         return flightList;
                    
     }
+     @Override
      public Pair<String, String> getDiscount(int flightId) throws DaoException {
          Pair<String, String> discountPair = null;
          

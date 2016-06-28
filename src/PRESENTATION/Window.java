@@ -38,7 +38,7 @@ public class Window extends javax.swing.JFrame {
     private void initComponents() {
 
         jiSearch = new javax.swing.JInternalFrame();
-        jButton1 = new javax.swing.JButton();
+        searchTicketButton = new javax.swing.JButton();
         ticketIdField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -90,10 +90,10 @@ public class Window extends javax.swing.JFrame {
         jiSearch.setResizable(true);
         jiSearch.setVisible(true);
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchTicketButton.setText("Pesquisar");
+        searchTicketButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchTicketButtonActionPerformed(evt);
             }
         });
 
@@ -120,22 +120,22 @@ public class Window extends javax.swing.JFrame {
 
         fromTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         fromTextField.setEnabled(false);
-        jPanel1.add(fromTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 30, 90, -1));
+        jPanel1.add(fromTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 30, 170, -1));
 
         toTextField.setEnabled(false);
-        jPanel1.add(toTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 74, 90, -1));
+        jPanel1.add(toTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 74, 170, -1));
 
         seatTextField.setEnabled(false);
-        jPanel1.add(seatTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 118, 90, -1));
+        jPanel1.add(seatTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 118, 170, -1));
 
         statusTextField.setEnabled(false);
-        jPanel1.add(statusTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 162, 90, -1));
+        jPanel1.add(statusTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 162, 170, -1));
 
         dateLabel.setText("Data:");
         jPanel1.add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 211, -1, -1));
 
         dateTextField.setEnabled(false);
-        jPanel1.add(dateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 206, 90, -1));
+        jPanel1.add(dateTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 206, 170, -1));
 
         javax.swing.GroupLayout jiSearchLayout = new javax.swing.GroupLayout(jiSearch.getContentPane());
         jiSearch.getContentPane().setLayout(jiSearchLayout);
@@ -144,20 +144,23 @@ public class Window extends javax.swing.JFrame {
             .addGroup(jiSearchLayout.createSequentialGroup()
                 .addGroup(jiSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jiSearchLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jButton1))
-                    .addGroup(jiSearchLayout.createSequentialGroup()
+                        .addGroup(jiSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jiSearchLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(searchTicketButton))
+                            .addGroup(jiSearchLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jiSearchLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ticketIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jiSearchLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jiSearchLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ticketIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jiSearchLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jiSearchLayout.setVerticalGroup(
             jiSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +171,7 @@ public class Window extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(ticketIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(searchTicketButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -222,23 +225,27 @@ public class Window extends javax.swing.JFrame {
             .addGroup(jiFlightsLayout.createSequentialGroup()
                 .addGroup(jiFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jiFlightsLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jiFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jiFlightsLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jiFlightsLayout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(searchFlightsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jiFlightsLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(departureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 14, Short.MAX_VALUE))
                     .addGroup(jiFlightsLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jiFlightsLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(confirmFlightButton))
-                    .addGroup(jiFlightsLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(searchFlightsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jiFlightsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(departureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jiFlightsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(confirmFlightButton)
+                .addGap(84, 84, 84))
         );
         jiFlightsLayout.setVerticalGroup(
             jiFlightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,22 +315,25 @@ public class Window extends javax.swing.JFrame {
             .addGroup(jiCheckinLayout.createSequentialGroup()
                 .addGroup(jiCheckinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jiCheckinLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jiCheckinLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(confirmCheckinButton))
-                    .addGroup(jiCheckinLayout.createSequentialGroup()
+                        .addGroup(jiCheckinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jiCheckinLayout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jiCheckinLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ticketIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SearchTicketsButton))
+                            .addGroup(jiCheckinLayout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(confirmCheckinButton)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jiCheckinLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ticketIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchTicketsButton))
-                    .addGroup(jiCheckinLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jiCheckinLayout.setVerticalGroup(
             jiCheckinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,9 +346,9 @@ public class Window extends javax.swing.JFrame {
                     .addComponent(SearchTicketsButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(confirmCheckinButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jiBuyTicket.setVisible(true);
@@ -400,15 +410,18 @@ public class Window extends javax.swing.JFrame {
                                     .addComponent(docTextField))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jiBuyTicketLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jiBuyTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jiBuyTicketLayout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(buyTicketButton)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jiBuyTicketLayout.createSequentialGroup()
+                .addGroup(jiBuyTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jiBuyTicketLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel4))
+                    .addGroup(jiBuyTicketLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel11)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jiBuyTicketLayout.setVerticalGroup(
             jiBuyTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,11 +462,11 @@ public class Window extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jiBuyTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jiCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jiFlights, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jiSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 133, Short.MAX_VALUE))
+                .addGap(0, 136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,13 +484,13 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void searchTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTicketButtonActionPerformed
         try {
             ctrl.getTickets(ticketIdField.getText(), fromTextField, toTextField, seatTextField, statusTextField, dateTextField);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_searchTicketButtonActionPerformed
 
     private void searchFlightsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFlightsButtonActionPerformed
         try {
@@ -601,7 +614,6 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionTextField;
     private javax.swing.JTextField docTextField;
     private javax.swing.JTextField fromTextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -631,6 +643,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextField priceTextField;
     private javax.swing.JTextField priceWithDiscTextField;
     private javax.swing.JButton searchFlightsButton;
+    private javax.swing.JButton searchTicketButton;
     private javax.swing.JTextField seatTextField;
     private javax.swing.JTextField statusTextField;
     private javax.swing.JTextField ticketIdField;

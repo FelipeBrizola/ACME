@@ -13,7 +13,7 @@ import java.sql.ResultSet;
  *
  * @author felipebrizola
  */
-public class UserDao implements IUserDao {
+public class UserDao  {
     
     public User getUser(String email, String pass) throws DaoException {
         User user = null;

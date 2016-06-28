@@ -12,10 +12,10 @@ import ENTITIES.User;
  * @author felipebrizola
  */
 public interface IUserDao {
-    public User getUser(String email, String pass) throws DaoException;
-    public User getUserByDoc(String doc) throws DaoException;
-     public boolean insertUser(String name, String doc) throws DaoException;
-     public int exists(String name, String doc) throws DaoException;
+     User getUser(String email, String pass) throws DaoException;
+     User getUserByDoc(String doc) throws DaoException;
+     boolean insertUser(String name, String doc) throws DaoException;
+     int exists(String name, String doc) throws DaoException;
 }
 
 
