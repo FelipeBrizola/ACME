@@ -37,3 +37,10 @@ insert into flights(route_id, departure, price)
     values(8, '15/07/2016 - 10:00', 300.00);
 insert into flights(route_id, departure, price)
     values(8, '15/07/2016 - 06:00', 200.00);
+
+insert into flights(route_id, departure, price)
+    values(10, '28/06/2016 - 07:00', 200.00);
+insert into flights(route_id, departure, price)
+    values(10, '28/06/2016 - 9:00', 300.00);
+insert into flights(route_id, departure, price)
+    values(10, '28/06/2016 - 23:00', 350.00);

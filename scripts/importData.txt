@@ -1,0 +1,3 @@
+Comando do postgres que realiza inserts nas tabelas já criadas.
+
+copy airlines from ‘/Users/felipebrizola/NetBeansProjects/ACME/dat/airlines.dat' delimiter ';' csv;

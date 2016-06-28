@@ -20,19 +20,33 @@ public class FlightDao implements IFlightDao {
      @Override
      public ArrayList<Flight> getFlights(String departure) throws DaoException {
         ArrayList<Flight> flightList = new ArrayList<>();
-        String sql = "SELECT R.FROM, R.TO, F.PRICE, F.ID, F.SALES_ID \n" +
-                     "FROM FLIGHTS F \n" +
-                     "INNER JOIN ROUTES R \n" +
-                     "ON R.ID = F.ID ";
+        String hour = null;
+        String sql = "select * \n" +
+                     "from \n" +
+                     "(select R.FROM,\n" +
+                        "R.TO,\n" +
+                        "F.PRICE,\n" +
+                        "F.ID,\n" +
+                        "F.SALES_ID,\n" +
+                        "to_timestamp(departure, 'dd/mm/yyyy - HH24:MI') as data_voo\n" +
+                        "from FLIGHTS F\n" +
+                        "inner join ROUTES R on R.ID = F.ROUTE_ID) as sub ";
         // pesquisa de voo no mesmo dia
-        if (departure.length() > 10)
-            sql = sql + "where to_timestamp(?, 'dd/mm/yyyy - HH24:MI') <= to_timestamp(departure, 'dd/mm/yyyy - HH24:MI');";
+        if (departure.length() > 10) {
+            hour =  departure.substring(13);
+            sql = sql + "where to_timestamp(date_part('day', data_voo)||'/'|| date_part('month', data_voo)||'/'||date_part('year', data_voo), 'DD/MM/YYYY') = to_timestamp(? , 'DD/MM/YYYY')\n" +
+                        "and to_timestamp(date_part('hour', data_voo)||':'||date_part('minute', data_voo), 'HH24:MI') >= to_timestamp(? , 'HH24:MI')";
+        }
         // voos futuros
         else
-            sql = sql + "where to_timestamp(? , 'dd/mm/yyyy') = to_timestamp(departure, 'dd/mm/yyyy');";
+            sql = sql + "where to_timestamp(? , 'dd/mm/yyyy') = to_timestamp(date_part('day', data_voo)||'/'|| date_part('month', data_voo)||'/'||date_part('year', data_voo), 'DD/MM/YYYY')";
+        
         Connection connection = dbConnection.getConnection();
             try (PreparedStatement command = connection.prepareStatement(sql)) {
                 command.setString(1, departure);
+                if (departure.length() > 10)
+                    command.setString(2, hour);
+                    
                 try (ResultSet result = command.executeQuery()) {
                     while(result.next()) {
                         String fFrom = result.getString("FROM");

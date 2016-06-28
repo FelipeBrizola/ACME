@@ -19,12 +19,12 @@ import javax.swing.JTextField;
 public class MainController {
     
     private Window tlWin;
-    private final TicketBusiness ticketBusiness;
-    private final FlightBusiness flightBusiness;
+    private final TicketBusiness ticketFacade;
+    private final FlightBusiness flightFacade;
     
     public MainController(){
-        ticketBusiness = new TicketBusiness();
-        flightBusiness =  new FlightBusiness();
+        ticketFacade = new TicketBusiness();
+        flightFacade =  new FlightBusiness();
     }
     
     public Window getPrincipalWindow() {
@@ -56,14 +56,14 @@ public class MainController {
     }
     void buildGridCheckin(JTable table, String tickedId) throws Exception {
         GridHelper bg = new GridHelper();
-        bg.buildGridCheckin(table, ticketBusiness.getTickets(tickedId));
+        bg.buildGridCheckin(table, ticketFacade.getTickets(tickedId));
     }
     
     void buildGridFlights(JTable table, String departure) throws Exception {
         GridHelper bg = new GridHelper();
         ArrayList<Flight> flights = new ArrayList<>();
         try {
-            flights = flightBusiness.getFlights(departure);
+            flights = flightFacade.getFlights(departure);
             bg.buildGridFlights(table, flights);
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
@@ -72,7 +72,7 @@ public class MainController {
     
     void confirmCheckin(String tickedId, String seat) throws Exception {
         try {
-            ticketBusiness.confirmCheckin(tickedId, seat, "checkin ok");
+            ticketFacade.confirmCheckin(tickedId, seat, "checkin ok");
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }   
@@ -81,7 +81,7 @@ public class MainController {
     void getPromotion(String flightId, String originalPrice, JTextField discountValueTextField, JTextField descriptionTextField) throws Exception {
         Promotion p;
         try {
-            p = flightBusiness.getDiscount(flightId, originalPrice);
+            p = flightFacade.getDiscount(flightId, originalPrice);
             
             descriptionTextField.setText(p.getDescription());
             discountValueTextField.setText( Double.toString(p.getDiscounted()) );
@@ -93,7 +93,7 @@ public class MainController {
     }
     void buyTicket(String name, String doc, String flightId) throws Exception {
         try {
-            ticketBusiness.buyTicket(name, doc, flightId);
+            ticketFacade.buyTicket(name, doc, flightId);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
