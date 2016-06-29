@@ -73,7 +73,7 @@ public class TicketBusiness implements ITicketBusiness{
         User user;
         TicketDao ticketDao =  new TicketDao();
         try {
-            if (ticketDao.accentsBusy(flightId) >= 48)
+            if (ticketDao.accentsBusy(flightId) > 40)
                 throw new Exception("Não há lugares disponiveis nesse voo. Pf selecione outro");
             
             if (userDao.exists(name, doc) == 0) 

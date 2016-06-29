@@ -277,17 +277,17 @@ public class Window extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null, null, null},
-                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null, null, null},
-                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null, null, null},
-                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null, null, null}
+                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null},
+                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null},
+                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null},
+                { new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -582,6 +582,8 @@ public class Window extends javax.swing.JFrame {
         try {
             ctrl.buyTicket(nameTextField.getText(), docTextField.getText(), flightId);
             JOptionPane.showMessageDialog(null, "compra realizada com sucesso");
+            nameTextField.setText(null);
+            docTextField.setText(null);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
